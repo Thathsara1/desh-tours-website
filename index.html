@@ -1,528 +1,1371 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Desh Tours | Udawalawa – Wild Encounters Safari with Photo Reviews</title>
-  
-  <!-- Fonts & Core Frameworks -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Desh Tours | Udawalawa – Safari with Secure Admin</title>
 
-  <style>
-    :root {
-      --bg-main: #060a0a;
-      --bg-surface: rgba(20, 28, 28, 0.85);
-      --bg-surface-elevated: #131c1c;
-      --accent-primary: #f2c94c;
-      --accent-gradient: linear-gradient(135deg, #f2c94c 0%, #f2994a 100%);
-      --text-main: #f4f7f6;
-      --text-muted: #9fa9a9;
-      --border-color: rgba(242, 201, 76, 0.15);
-      --blur-strength: 16px;
-      --radius-lg: 24px;
-      --radius-md: 16px;
-      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    <!-- Fonts & Core Frameworks -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    body.light {
-      --bg-main: #f9faf9;
-      --bg-surface: rgba(255, 255, 255, 0.9);
-      --bg-surface-elevated: #f0f4f4;
-      --accent-primary: #d48218;
-      --accent-gradient: linear-gradient(135deg, #d48218 0%, #b86200 100%);
-      --text-main: #131c1c;
-      --text-muted: #5c6969;
-      --border-color: rgba(212, 130, 24, 0.18);
-    }
+    <style>
+      :root {
+        --bg-main: #060a0a;
+        --bg-surface: rgba(20, 28, 28, 0.85);
+        --bg-surface-elevated: #131c1c;
+        --accent-primary: #f2c94c;
+        --accent-gradient: linear-gradient(135deg, #f2c94c 0%, #f2994a 100%);
+        --text-main: #f4f7f6;
+        --text-muted: #9fa9a9;
+        --border-color: rgba(242, 201, 76, 0.15);
+        --blur-strength: 16px;
+        --radius-lg: 24px;
+        --radius-md: 16px;
+        --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        --admin-accent: #ef4444;
+      }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      transition: var(--transition-smooth);
-      overflow-x: hidden;
-    }
-    h1, h2, h3, h4, .display-font { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.03em; }
-    
-    /* Hero with Cover */
-    .hero-with-cover {
-      position: relative; isolation: isolate; min-height: 90vh; display: flex; align-items: center;
-    }
-    .hero-cover-bg {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;
-      filter: brightness(0.45) contrast(1.05); border-radius: 0 0 48px 48px;
-    }
-    .hero-overlay-dark {
-      position: absolute; inset: 0;
-      background: linear-gradient(105deg, rgba(6,10,10,0.85) 0%, rgba(6,10,10,0.4) 70%);
-      z-index: -1; border-radius: 0 0 48px 48px;
-    }
-    
-    /* Cards & Components */
-    .modern-card {
-      background: var(--bg-surface); backdrop-filter: blur(var(--blur-strength));
-      border: 1px solid var(--border-color); border-radius: var(--radius-lg);
-      padding: 2rem; transition: var(--transition-smooth);
-    }
-    .modern-card:hover { transform: translateY(-6px); border-color: rgba(242, 201, 76, 0.45); }
-    .btn-premium {
-      background: var(--accent-gradient); color: #060a0a !important; font-weight: 700;
-      padding: 14px 36px; border-radius: 100px; display: inline-flex; align-items: center; gap: 10px;
-      transition: var(--transition-smooth);
-    }
-    .btn-premium-outline {
-      background: transparent; border: 1.5px solid var(--border-color); color: var(--text-main) !important;
-      padding: 13px 32px; border-radius: 100px; font-weight: 600;
-    }
-    .btn-premium-outline:hover { border-color: var(--accent-primary); background: rgba(242,201,76,0.08); }
-    
-    /* Gallery Grid */
-    .gallery-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem;
-    }
-    .gallery-item {
-      position: relative; border-radius: 20px; overflow: hidden; cursor: pointer;
-      aspect-ratio: 1/1; border: 1px solid var(--border-color); transition: 0.3s;
-    }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-    .gallery-item:hover img { transform: scale(1.08); }
-    .gallery-overlay {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      padding: 12px; color: white; font-size: 0.75rem; opacity: 0; transition: 0.3s;
-    }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-    
-    /* Review Card with Image */
-    .review-card-modern {
-      background: var(--bg-surface); border-radius: var(--radius-md); padding: 1.5rem;
-      border: 1px solid var(--border-color); transition: var(--transition-smooth);
-    }
-    .review-img-thumb {
-      width: 60px; height: 60px; border-radius: 12px; object-fit: cover; margin-top: 8px;
-      border: 1px solid var(--accent-primary); cursor: pointer;
-    }
-    
-    /* Modal for full image */
-    .image-modal {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95);
-      z-index: 2000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px);
-    }
-    .image-modal img { max-width: 90%; max-height: 90%; border-radius: 20px; border: 2px solid var(--accent-primary); }
-    .close-modal { position: absolute; top: 30px; right: 40px; color: white; font-size: 40px; cursor: pointer; }
-    
-    .feedback-image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-    .feedback-thumb { border-radius: 20px; overflow: hidden; height: 120px; border: 1px solid var(--border-color); }
-    .feedback-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
-    .feedback-thumb:hover img { transform: scale(1.05); }
-    .whatsapp-fab { position: fixed; bottom: 32px; right: 32px; background: #25D366; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000; }
-    .theme-switch { width: 64px; height: 34px; background: var(--bg-surface-elevated); border-radius: 100px; position: relative; cursor: pointer; border: 1px solid var(--border-color); }
-    .theme-switch::after { content: "⚡"; position: absolute; top: 3px; left: 4px; width: 26px; height: 26px; background: var(--bg-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-    body.light .theme-switch::after { transform: translateX(28px); content: "☀️"; }
-    .toast-custom { position: fixed; bottom: 40px; left: 40px; background: var(--bg-surface-elevated); backdrop-filter: blur(20px); border-left: 4px solid var(--accent-primary); border-radius: var(--radius-md); padding: 16px 24px; z-index: 2000; display: none; align-items: center; gap: 12px; }
-    .avatar-initial { width: 48px; height: 48px; background: var(--accent-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
-    .glow-badge { background: rgba(242, 201, 76, 0.08); border: 1px solid rgba(242, 201, 76, 0.3); color: var(--accent-primary); padding: 6px 16px; border-radius: 100px; font-size: 0.85rem; }
-  </style>
-</head>
-<body>
+      body.light {
+        --bg-main: #f9faf9;
+        --bg-surface: rgba(255, 255, 255, 0.9);
+        --bg-surface-elevated: #f0f4f4;
+        --accent-primary: #d48218;
+        --accent-gradient: linear-gradient(135deg, #d48218 0%, #b86200 100%);
+        --text-main: #131c1c;
+        --text-muted: #5c6969;
+        --border-color: rgba(212, 130, 24, 0.18);
+      }
 
-<a href="https://wa.me/94766008609?text=Hello%20Desh%20Tours!%20I'd%20like%20to%20book%20a%20safari" target="_blank" class="whatsapp-fab"><i class="fab fa-whatsapp"></i></a>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        transition: var(--transition-smooth);
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      .display-font {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
 
-<!-- Navigation -->
-<nav class="container-fluid py-4 px-4 sticky-top" style="background: rgba(6,10,10,0.75); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); z-index: 999;">
-  <div class="container d-flex justify-content-between align-items-center">
-    <div class="d-flex align-items-center gap-3">
-      <i class="fas fa-elephant fa-2x" style="color: var(--accent-primary);"></i>
-      <span class="fs-3 fw-bold display-font">Desh Tours</span>
-      <span class="badge glow-badge">Premium Safari</span>
-    </div>
-    <div class="d-flex gap-4 align-items-center">
-      <div class="theme-switch" id="themeToggle"></div>
-    </div>
-  </div>
-</nav>
+      .hero-with-cover {
+        position: relative;
+        isolation: isolate;
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+      }
+      .hero-cover-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+        filter: brightness(0.45) contrast(1.05);
+        border-radius: 0 0 48px 48px;
+      }
+      .hero-overlay-dark {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          rgba(6, 10, 10, 0.85) 0%,
+          rgba(6, 10, 10, 0.4) 70%
+        );
+        z-index: -1;
+        border-radius: 0 0 48px 48px;
+      }
 
-<!-- ========== HOME PAGE ========== -->
-<div id="homePage">
-    <section class="hero-with-cover">
-    <!-- High-resolution matching wildlife image: majestic elephant herd in Udawalawa landscape -->
-    <img src="images/hero.jpg "alt="Wild elephant herd walking through golden grasslands of Udawalawa National Park - signature safari imagery" class="hero-cover-bg">
-    <div class="hero-overlay-dark"></div>
-    <div class="container py-5 position-relative z-1">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-7" data-aos="fade-up">
-          <div class="mb-4">
-            <span class="glow-badge"><i class="fas fa-award me-2"></i>5.0 Travelers' Choice Excellence</span>
-          </div>
-          <h1 class="display-2 fw-bold mb-4">Where Giants<br>Roam Free</h1>
-          <p class="fs-5 mb-5 text-muted" style="line-height: 1.7;">Experience premium bespoke expeditions into Udawalawa National Park. Encounter wild majestic herds, elusive leopards, and rich avifauna with expert local trackers.</p>
-          
-          <div class="d-flex gap-3 flex-wrap mb-5">
-            <a href="#reviews-section" class="btn-premium text-decoration-none"><i class="fas fa-star"></i> Read Adventures</a>
-            <button id="goToFeedbackBtn" class="btn-premium-outline"><i class="fas fa-pen-nib me-1"></i> Author Feedback</button>
-          </div>
+      .modern-card {
+        background: var(--bg-surface);
+        backdrop-filter: blur(var(--blur-strength));
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        transition: var(--transition-smooth);
+      }
+      .modern-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(242, 201, 76, 0.45);
+      }
+      .btn-premium {
+        background: var(--accent-gradient);
+        color: #060a0a !important;
+        font-weight: 700;
+        padding: 14px 36px;
+        border-radius: 100px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: var(--transition-smooth);
+        border: none;
+        cursor: pointer;
+      }
+      .btn-premium-outline {
+        background: transparent;
+        border: 1.5px solid var(--border-color);
+        color: var(--text-main) !important;
+        padding: 13px 32px;
+        border-radius: 100px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .btn-danger-outline {
+        background: transparent;
+        border: 1.5px solid #ef4444;
+        color: #ef4444 !important;
+        padding: 8px 20px;
+        border-radius: 100px;
+        font-weight: 600;
+        transition: 0.2s;
+        cursor: pointer;
+      }
+      .btn-danger-outline:hover {
+        background: #ef4444;
+        color: white !important;
+      }
 
-          <div class="row g-4 pt-4 border-top" style="border-color: var(--border-color) !important;">
-            <div class="col-sm-4">
-              <div class="d-flex align-items-center gap-2">
-                <i class="fas fa-circle-check text-success"></i>
-                <span class="small fw-semibold">Available 24/7/365</span>
+      /* Horizontal Gallery */
+      .gallery-scroll-x {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1.2rem;
+        padding-bottom: 1rem;
+        scrollbar-width: thin;
+        cursor: grab;
+      }
+      .gallery-scroll-x::-webkit-scrollbar {
+        height: 6px;
+      }
+      .gallery-scroll-x::-webkit-scrollbar-track {
+        background: var(--border-color);
+        border-radius: 10px;
+      }
+      .gallery-scroll-x::-webkit-scrollbar-thumb {
+        background: var(--accent-primary);
+        border-radius: 10px;
+      }
+      .gallery-h-item {
+        flex: 0 0 280px;
+        scroll-snap-align: start;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        aspect-ratio: 4/3;
+        border: 1px solid var(--border-color);
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .gallery-h-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.4s;
+      }
+      .gallery-h-item:hover img {
+        transform: scale(1.05);
+      }
+      .gallery-h-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+        padding: 12px 10px;
+        font-size: 0.75rem;
+        color: white;
+      }
+      .delete-icon-overlay {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        transition: 0.2s;
+        opacity: 0;
+      }
+      .gallery-h-item:hover .delete-icon-overlay {
+        opacity: 1;
+      }
+      .delete-icon-overlay i {
+        color: #ef4444;
+        font-size: 16px;
+      }
+      .delete-icon-overlay:hover {
+        background: #ef4444;
+      }
+      .delete-icon-overlay:hover i {
+        color: white;
+      }
+
+      .review-card-modern {
+        background: var(--bg-surface);
+        border-radius: var(--radius-md);
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+        transition: var(--transition-smooth);
+        position: relative;
+      }
+      .review-img-thumb {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        object-fit: cover;
+        margin-top: 8px;
+        border: 1px solid var(--accent-primary);
+        cursor: pointer;
+      }
+      .admin-delete-btn {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: rgba(0, 0, 0, 0.6);
+        border: none;
+        border-radius: 30px;
+        padding: 6px 12px;
+        font-size: 12px;
+        color: #ef4444;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .admin-delete-btn:hover {
+        background: #ef4444;
+        color: white;
+      }
+
+      .image-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 2000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(8px);
+      }
+      .image-modal img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 20px;
+        border: 2px solid var(--accent-primary);
+      }
+      .close-modal {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        color: white;
+        font-size: 40px;
+        cursor: pointer;
+      }
+
+      .whatsapp-fab {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        background: #25d366;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        z-index: 1000;
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+      }
+      .theme-switch {
+        width: 64px;
+        height: 34px;
+        background: var(--bg-surface-elevated);
+        border-radius: 100px;
+        position: relative;
+        cursor: pointer;
+        border: 1px solid var(--border-color);
+      }
+      .theme-switch::after {
+        content: "⚡";
+        position: absolute;
+        top: 3px;
+        left: 4px;
+        width: 26px;
+        height: 26px;
+        background: var(--bg-main);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+      }
+      body.light .theme-switch::after {
+        transform: translateX(28px);
+        content: "☀️";
+      }
+      .toast-custom {
+        position: fixed;
+        bottom: 40px;
+        left: 40px;
+        background: var(--bg-surface-elevated);
+        backdrop-filter: blur(20px);
+        border-left: 4px solid var(--accent-primary);
+        border-radius: var(--radius-md);
+        padding: 16px 24px;
+        z-index: 2100;
+        display: none;
+        align-items: center;
+        gap: 12px;
+      }
+      .avatar-initial {
+        width: 48px;
+        height: 48px;
+        background: var(--accent-gradient);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+      .glow-badge {
+        background: rgba(242, 201, 76, 0.08);
+        border: 1px solid rgba(242, 201, 76, 0.3);
+        color: var(--accent-primary);
+        padding: 6px 16px;
+        border-radius: 100px;
+        font-size: 0.85rem;
+      }
+      .modern-input {
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-color);
+        color: var(--text-main);
+        border-radius: 20px;
+        padding: 12px 20px;
+        width: 100%;
+      }
+      .all-reviews-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1.8rem;
+      }
+      .admin-header-badge {
+        background: rgba(239, 68, 68, 0.15);
+        border: 1px solid rgba(239, 68, 68, 0.4);
+        color: #ef4444;
+      }
+
+      /* Login Modal Overlay */
+      .login-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(12px);
+        z-index: 3000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s;
+      }
+      .login-card {
+        max-width: 420px;
+        width: 90%;
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-color);
+        border-radius: 32px;
+        padding: 2rem;
+        text-align: center;
+      }
+      .login-input {
+        background: var(--bg-main);
+        border: 1px solid var(--border-color);
+        border-radius: 60px;
+        padding: 14px 20px;
+        width: 100%;
+        color: var(--text-main);
+        margin-bottom: 18px;
+      }
+      .admin-locked-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(239, 68, 68, 0.2);
+        padding: 6px 14px;
+        border-radius: 60px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      href="https://wa.me/94766008609?text=Hello%20Desh%20Tours!%20I'd%20like%20to%20book%20a%20safari"
+      target="_blank"
+      class="whatsapp-fab"
+      ><i class="fab fa-whatsapp"></i
+    ></a>
+
+    <!-- Navigation -->
+    <nav
+      class="container-fluid py-4 px-4 sticky-top"
+      style="
+        background: rgba(6, 10, 10, 0.75);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        z-index: 999;
+      "
+    >
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+          <i
+            class="fas fa-elephant fa-2x"
+            style="color: var(--accent-primary)"
+          ></i>
+          <span class="fs-3 fw-bold display-font">Desh Tours</span>
+          <span class="badge glow-badge">Premium Safari</span>
+        </div>
+        <div class="d-flex gap-4 align-items-center">
+          <button
+            id="adminPanelBtn"
+            class="btn-premium-outline"
+            style="padding: 8px 20px"
+          >
+            <i class="fas fa-shield-alt me-1"></i> Admin
+          </button>
+          <div class="theme-switch" id="themeToggle"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========== HOME PAGE ========== -->
+    <div id="homePage">
+      <section class="hero-with-cover">
+        <img
+          src="images/hero.jpg"
+          alt="Wild elephant herd"
+          class="hero-cover-bg"
+        />
+        <div class="hero-overlay-dark"></div>
+        <div class="container py-5 position-relative z-1">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-7" data-aos="fade-up">
+              <div class="mb-4">
+                <span class="glow-badge"
+                  ><i class="fas fa-award me-2"></i>5.0 Travelers' Choice
+                  Excellence</span
+                >
+              </div>
+              <h1 class="display-2 fw-bold mb-4">
+                Where Giants<br />Roam Free
+              </h1>
+              <p class="fs-5 mb-5 text">
+                Experience premium bespoke expeditions into Udawalawa National
+                Park.
+              </p>
+              <div class="d-flex gap-3 flex-wrap mb-5">
+                <a
+                  href="#reviews-section-preview"
+                  class="btn-premium text-decoration-none"
+                  ><i class="fas fa-star"></i> Recent Stories</a
+                >
+                <button id="goToFeedbackBtn" class="btn-premium-outline">
+                  <i class="fas fa-pen-nib me-1"></i> Share Safari
+                </button>
+                <button id="viewAllReviewsBtn" class="btn-premium-outline">
+                  <i class="fas fa-list-ul me-1"></i> All Reviews
+                </button>
+              </div>
+              <div
+                class="row g-4 pt-4 border-top"
+                style="border-color: var(--border-color) !important"
+              >
+                <div class="col-sm-4">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fas fa-circle-check text-success"></i
+                    ><span class="small fw-semibold">Available 24/7</span>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fas fa-location-dot text-danger"></i
+                    ><span class="small fw-semibold">Udawalawa, Sri Lanka</span>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fas fa-shield-halved text-warning"></i
+                    ><span class="small fw-semibold">Premium Safety</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-sm-4">
-              <div class="d-flex align-items-center gap-2">
-                <i class="fas fa-location-dot text-danger"></i>
-                <span class="small fw-semibold">Udawalawa, Sri Lanka</span>
+            <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+              <div class="mb-4" style="height: 280px">
+                <img
+                  src="images/2nd.png"
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 28px;
+                  "
+                  class="shadow-lg"
+                />
               </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="d-flex align-items-center gap-2">
-                <i class="fas fa-shield-halved text-warning"></i>
-                <span class="small fw-semibold">Premium Safety Vehicles</span>
+              <div class="modern-card text-center p-4">
+                <div class="mb-3 text-warning">
+                  <i class="fas fa-quote-right fa-2x opacity-50"></i>
+                </div>
+                <p class="fs-6 fst-italic mb-3">
+                  "Over 40 distinct wild elephants and expert guidance!"
+                </p>
+                <div class="fw-bold" style="color: var(--accent-primary)">
+                  Global Traveler Review
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Secondary matching visual -->
-        <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
-          <div class="showcase-media-container mb-4" style="height: 280px;">
-            <img src="images/2nd.png" alt="Open safari jeep ready for adventure in Udawalawa wilderness" class="showcase-img">
-            <div class="media-overlay-glow"></div>
+      <div class="container my-5">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="modern-card text-center">
+              <i
+                class="fas fa-dharmachakra fa-2x mb-3"
+                style="color: var(--accent-primary)"
+              ></i>
+              <h4>Elephant Safari</h4>
+              <p>High encounter rate</p>
+            </div>
           </div>
-          <div class="modern-card text-center p-4">
-            <div class="mb-3 text-warning"><i class="fas fa-quote-right fa-2x opacity-50"></i></div>
-            <p class="fs-6 fst-italic mb-3" style="line-height: 1.6;">"An unmissable safari experience in Sri Lanka. Our expert naturalist anticipated animal tracking beautifully. We saw over 40 distinct wild elephants!"</p>
-            <div class="fw-bold tracking-wide text-uppercase" style="color: var(--accent-primary); font-size: 0.75rem;">Global Traveler Review</div>
+          <div class="col-md-4">
+            <div class="modern-card text-center">
+              <i
+                class="fas fa-bolt fa-2x mb-3"
+                style="color: var(--accent-primary)"
+              ></i>
+              <h4>24/7 Flexible</h4>
+              <p>Dawn to night drives</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="modern-card text-center">
+              <div
+                class="fs-1 fw-bold"
+                id="avgRatingHome"
+                style="color: var(--accent-primary)"
+              >
+                5.0
+              </div>
+              <p id="reviewCountHome">from reviews</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Horizontal Gallery -->
+      <section class="container my-5 py-3 horizontal-gallery-section">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <span class="glow-badge">Visual Safari 🐘</span>
+            <h2 class="display-5 fw-bold mt-2">Moments from the wild</h2>
+            <p class="text-muted">
+              Scroll horizontally — admin only can delete photos
+            </p>
+          </div>
+          <!-- <i class="fas fa-arrow-right fa-2x opacity-50"></i> -->
+        </div>
+        <div class="gallery-scroll-x" id="horizontalGalleryContainer"></div>
+      </section>
+
+      <!-- Recent 4 Reviews -->
+      <section id="reviews-section-preview" class="container my-5 py-4">
+        <div class="mb-5 text-center">
+          <span class="glow-badge">Recent Expeditions</span>
+          <h2 class="display-4 fw-bold">Latest Traveler Stories</h2>
+          <p class="text-muted">4 most recent — admin can delete any review</p>
+        </div>
+        <div id="recentReviewsContainer" class="row g-4"></div>
+        <div class="text-center mt-5">
+          <button id="viewAllReviewsBtn2" class="btn-premium-outline">
+            <i class="fas fa-compass me-2"></i>See All Traveler Reviews
+          </button>
+        </div>
+      </section>
+
+      <div class="container my-5">
+        <div class="modern-card p-5 text-center">
+          <h3>Begin Your Safari Expedition</h3>
+          <p class="mb-4">
+            📍 No.20 Ekamutgugama, Sevanagala 5 post, Udawalawa
+          </p>
+          <a
+            href="https://maps.app.goo.gl/L15daCMrAxHUSYuL7"
+            target="_blank"
+            class="btn-premium text-decoration-none"
+            >Get Directions <i class="fas fa-compass"></i></a
+          ><button id="goToFeedbackBtn2" class="btn-premium-outline ms-3">
+            Share Your Experience
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== ALL REVIEWS PAGE ========== -->
+    <div id="allReviewsPage" style="display: none">
+      <div class="container my-5 py-5">
+        <div
+          class="d-flex justify-content-between align-items-center flex-wrap mb-5"
+        >
+          <div>
+            <span class="glow-badge"
+              ><i class="fas fa-book-open me-1"></i> Complete Archive</span
+            >
+            <h1 class="display-5 fw-bold mt-2">All Guest Stories</h1>
+            <p>Admin can delete any review/photo after login</p>
+          </div>
+          <button id="backToHomeFromAll" class="btn-premium-outline">
+            <i class="fas fa-arrow-left me-2"></i>Back to Home
+          </button>
+        </div>
+        <div id="allReviewsGridContainer" class="all-reviews-grid"></div>
+        <div class="text-center mt-5">
+          <button id="backToHomeFromAllBottom" class="btn-premium">
+            Return to Home
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== ADMIN PANEL (protected, shows only after login) ========== -->
+    <div id="adminPage" style="display: none">
+      <div class="container my-5 py-4">
+        <div
+          class="d-flex justify-content-between align-items-center flex-wrap mb-4"
+        >
+          <div>
+            <span class="glow-badge admin-header-badge"
+              ><i class="fas fa-user-shield me-1"></i> Admin Dashboard</span
+            >
+            <h1 class="display-4 fw-bold mt-2">Manage Content</h1>
+            <p class="text-muted">
+              Delete reviews & photos permanently from gallery
+            </p>
+          </div>
+          <button id="logoutAdminBtn" class="btn-danger-outline">
+            <i class="fas fa-sign-out-alt me-2"></i>Logout
+          </button>
+        </div>
+
+        <div class="row g-5">
+          <div class="col-lg-12">
+            <div class="modern-card">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <h3>
+                  <i
+                    class="fas fa-comments me-2"
+                    style="color: var(--accent-primary)"
+                  ></i>
+                  All Reviews & Photos
+                </h3>
+                <span class="badge glow-badge" id="adminEntryCount"
+                  >0 entries</span
+                >
+              </div>
+              <div
+                id="adminReviewsList"
+                class="all-reviews-grid"
+                style="max-height: 600px; overflow-y: auto; padding-right: 10px"
+              ></div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="modern-card text-center">
+              <i class="fas fa-trash-alt fa-3x mb-3" style="color: #ef4444"></i>
+              <h4>Delete photos directly from gallery items</h4>
+              <p class="text-muted">
+                Hover over any gallery image (on home or admin) and click the
+                <i class="fas fa-trash-can"></i> icon to remove the review & its
+                photo.
+              </p>
+              <button id="refreshAdminBtn" class="btn-premium-outline mt-2">
+                <i class="fas fa-sync-alt me-2"></i>Refresh View
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Stats -->
-  <div class="container my-5">
-    <div class="row g-4">
-      <div class="col-md-4"><div class="modern-card text-center"><i class="fas fa-dharmachakra fa-2x mb-3" style="color: var(--accent-primary);"></i><h4>Elephant Safari</h4><p>High encounter rate</p></div></div>
-      <div class="col-md-4"><div class="modern-card text-center"><i class="fas fa-bolt fa-2x mb-3" style="color: var(--accent-primary);"></i><h4>24/7 Flexible</h4><p>Dawn to night drives</p></div></div>
-      <div class="col-md-4"><div class="modern-card text-center"><div class="fs-1 fw-bold" id="avgRatingHome" style="color: var(--accent-primary);">5.0</div><p id="reviewCountHome">from reviews</p></div></div>
-    </div>
-  </div>
-
-  <!-- PHOTO GALLERY SECTION (User uploaded images appear here) -->
-  <section id="gallerySection" class="container my-5 py-4">
-    <div class="text-center mb-5" data-aos="fade-up">
-      <span class="glow-badge">Visual Chronicles</span>
-      <h2 class="display-4 fw-bold mt-2">Safari Moments Gallery</h2>
-      <p class="text-muted">Real guest photos from their Udawalawa expeditions</p>
-    </div>
-    <div id="photoGalleryGrid" class="gallery-grid">
-      <!-- Dynamic gallery images will appear here -->
-    </div>
-  </section>
-
-  <!-- Reviews Section with Images -->
-  <section id="reviews-section" class="container my-5 py-4">
-    <div class="mb-5 text-center">
-      <span class="glow-badge">Expedition Journals</span>
-      <h2 class="display-4 fw-bold">Traveler Stories</h2>
-    </div>
-    <div id="reviewsContainer" class="row g-4"></div>
-  </section>
-
-  <!-- CTA -->
-  <div class="container my-5">
-    <div class="modern-card p-5 text-center">
-      <h3>Begin Your Safari Expedition</h3>
-      <p class="mb-4">📍 No.20 Ekamutgugama, Sevanagala 5 post, Udawalawa</p>
-      <a href="https://maps.app.goo.gl/L15daCMrAxHUSYuL7" target="_blank" class="btn-premium text-decoration-none">Get Directions <i class="fas fa-compass"></i></a>
-      <button id="goToFeedbackBtn2" class="btn-premium-outline ms-3">Share Your Experience</button>
-    </div>
-  </div>
-</div>
-
-<!-- ========== FEEDBACK PAGE with IMAGE UPLOAD ========== -->
-<div id="feedbackPage" style="display: none;">
-  <div class="container my-5 py-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-10" data-aos="fade-up">
-        <div class="modern-card p-4 p-md-5">
-          <div class="text-center mb-4">
-            <i class="fas fa-camera-retro fa-3x mb-3" style="color: var(--accent-primary);"></i>
-            <h2 class="display-5 fw-bold">Share Your Safari Story + Photo</h2>
-            <p class="text-muted">Upload a memorable wildlife photo with your review</p>
-          </div>
-
-          <form id="feedbackForm" enctype="multipart/form-data">
-            <div class="row g-4">
-              <div class="col-md-6">
-                <label class="form-label fw-bold">Full Name *</label>
-                <input type="text" class="form-control modern-input" id="fbName" required>
+    <!-- ========== FEEDBACK PAGE ========== -->
+    <div id="feedbackPage" style="display: none">
+      <div class="container my-5 py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-10" data-aos="fade-up">
+            <div class="modern-card p-4 p-md-5">
+              <div class="text-center mb-4">
+                <i
+                  class="fas fa-camera-retro fa-3x mb-3"
+                  style="color: var(--accent-primary)"
+                ></i>
+                <h2 class="display-5 fw-bold">
+                  Share Your Safari Story + Photo
+                </h2>
               </div>
-              <div class="col-md-6">
-                <label class="form-label fw-bold">Visit Date</label>
-                <input type="month" class="form-control modern-input" id="fbDate">
-              </div>
-              <div class="col-12">
-                <label class="form-label fw-bold">Rating *</label>
-                <div class="d-flex gap-3 fs-2" id="starSelector">
-                  <i class="far fa-star star-select" data-val="1" style="cursor: pointer;"></i>
-                  <i class="far fa-star star-select" data-val="2" style="cursor: pointer;"></i>
-                  <i class="far fa-star star-select" data-val="3" style="cursor: pointer;"></i>
-                  <i class="far fa-star star-select" data-val="4" style="cursor: pointer;"></i>
-                  <i class="far fa-star star-select" data-val="5" style="cursor: pointer;"></i>
+              <form id="feedbackForm" enctype="multipart/form-data">
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Full Name *</label
+                    ><input
+                      type="text"
+                      class="form-control modern-input"
+                      id="fbName"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Visit Date</label
+                    ><input
+                      type="month"
+                      class="form-control modern-input"
+                      id="fbDate"
+                    />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-bold">Rating *</label>
+                    <div class="d-flex gap-3 fs-2" id="starSelector">
+                      <i class="far fa-star star-select" data-val="1"></i
+                      ><i class="far fa-star star-select" data-val="2"></i
+                      ><i class="far fa-star star-select" data-val="3"></i
+                      ><i class="far fa-star star-select" data-val="4"></i
+                      ><i class="far fa-star star-select" data-val="5"></i>
+                    </div>
+                    <input type="hidden" id="fbRating" value="0" />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-bold">Your Review *</label
+                    ><textarea
+                      rows="4"
+                      class="form-control modern-input"
+                      id="fbReview"
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-bold"
+                      ><i class="fas fa-image me-2"></i>Upload Safari Photo
+                      (Optional)</label
+                    ><input
+                      type="file"
+                      class="form-control modern-input"
+                      id="fbImage"
+                      accept="image/jpeg,image/png,image/jpg"
+                    />
+                    <div id="imagePreview" class="mt-2" style="display: none">
+                      <img
+                        id="previewImg"
+                        src="#"
+                        style="max-width: 100px; border-radius: 12px"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="fbConsent"
+                        required
+                      /><label class="form-check-label"
+                        >I consent to share my review and photo publicly</label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12 text-center pt-3">
+                    <button type="submit" class="btn-premium">
+                      Publish Review <i class="fas fa-paper-plane"></i></button
+                    ><button
+                      type="button"
+                      id="backToHomeBtn"
+                      class="btn-premium-outline ms-3"
+                    >
+                      Back
+                    </button>
+                  </div>
                 </div>
-                <input type="hidden" id="fbRating" value="0">
-              </div>
-              <div class="col-12">
-                <label class="form-label fw-bold">Your Review *</label>
-                <textarea rows="4" class="form-control modern-input" id="fbReview" required placeholder="Describe your wildlife encounters, guide experience..."></textarea>
-              </div>
-              <div class="col-12">
-                <label class="form-label fw-bold"><i class="fas fa-image me-2"></i>Upload Safari Photo (Optional)</label>
-                <input type="file" class="form-control modern-input" id="fbImage" accept="image/jpeg,image/png,image/jpg">
-                <div class="text-muted small mt-1">Share your favorite moment — elephant, landscape, or jeep shot!</div>
-                <div id="imagePreview" class="mt-2" style="display: none;">
-                  <img id="previewImg" src="#" alt="Preview" style="max-width: 100px; border-radius: 12px;">
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="fbConsent" required>
-                  <label class="form-check-label">I consent to share my review and photo publicly</label>
-                </div>
-              </div>
-              <div class="col-12 text-center pt-3">
-                <button type="submit" class="btn-premium">Publish Review <i class="fas fa-paper-plane"></i></button>
-                <button type="button" id="backToHomeBtn" class="btn-premium-outline ms-3">Back to Home</button>
-              </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- Fullscreen Image Modal -->
-<div id="imageModal" class="image-modal">
-  <span class="close-modal">&times;</span>
-  <img id="modalImage" src="" alt="Full size">
-</div>
+    <!-- Login Overlay (shown when admin clicked & not logged in) -->
+    <div id="loginOverlay" class="login-overlay" style="display: none">
+      <div class="login-card" data-aos="zoom-in">
+        <div class="admin-locked-badge">
+          <i class="fas fa-lock"></i> <span>Admin Access Required</span>
+        </div>
+        <i
+          class="fas fa-shield-alt fa-3x mb-3"
+          style="color: var(--accent-primary)"
+        ></i>
+        <h3 class="mb-3">Secure Login</h3>
+        <input
+          type="password"
+          id="adminPassword"
+          class="login-input"
+          placeholder="Enter admin password"
+          autocomplete="off"
+        />
+        <button
+          id="loginSubmitBtn"
+          class="btn-premium w-100 justify-content-center"
+        >
+          <i class="fas fa-key me-2"></i>Unlock Dashboard
+        </button>
+        <p class="text-muted small mt-3">
+          🔐 Default password: <strong>admin123</strong> (change in code for
+          production)
+        </p>
+        <button id="closeLoginBtn" class="btn-premium-outline w-100 mt-2">
+          Cancel
+        </button>
+      </div>
+    </div>
 
-<div id="toastMsg" class="toast-custom"><i class="fas fa-check-circle" style="color: var(--accent-primary);"></i><span id="toastText"></span></div>
+    <!-- Modal -->
+    <div id="imageModal" class="image-modal">
+      <span class="close-modal">&times;</span><img id="modalImage" src="" />
+    </div>
+    <div id="toastMsg" class="toast-custom">
+      <i class="fas fa-check-circle" style="color: var(--accent-primary)"></i
+      ><span id="toastText"></span>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({ duration: 800, once: true });
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 800, once: true });
 
-  // ---------- DATA STRUCTURE: reviews with optional image (base64) ----------
-  let reviews = [];
+      // --- SECURE ADMIN AUTHENTICATION ---
+      // Hardcoded password (for demo; in production, use backend)
+      const ADMIN_PASSWORD = "admin123";
+      let isAdminLoggedIn = false;
 
-  function loadFromStorage() {
-    const stored = localStorage.getItem('desh_tours_photo_reviews');
-    if(stored) {
-      reviews = JSON.parse(stored);
-    } else {
-      reviews = [
-        { id: 1, name: "Michael & Sarah", rating: 5, text: "Incredible safari! Saw a leopard and elephant herds. Guide was phenomenal!", date: "October 2024", image: null },
-        { id: 2, name: "Amara & Nimali", rating: 5, text: "Perfectly organized, comfortable jeep. Over 30 elephants! Highly recommended.", date: "December 2024", image: null }
-      ];
-      saveData();
-    }
-    renderAll();
-    renderGallery();
-    updateStats();
-  }
+      // DOM elements
+      const loginOverlay = document.getElementById("loginOverlay");
+      const adminPage = document.getElementById("adminPage");
+      const homePage = document.getElementById("homePage");
+      const allReviewsDiv = document.getElementById("allReviewsPage");
+      const feedbackDiv = document.getElementById("feedbackPage");
 
-  function saveData() { localStorage.setItem('desh_tours_photo_reviews', JSON.stringify(reviews)); }
+      function showLoginModal() {
+        loginOverlay.style.display = "flex";
+      }
+      function hideLoginModal() {
+        loginOverlay.style.display = "none";
+        document.getElementById("adminPassword").value = "";
+      }
 
-  function renderAll() {
-    const container = document.getElementById('reviewsContainer');
-    if(!container) return;
-    if(reviews.length === 0) { container.innerHTML = '<div class="col-12 text-center"><p>No reviews yet. Be the first!</p></div>'; return; }
-    
-    let html = '';
-    reviews.forEach(rev => {
-      const stars = '★'.repeat(rev.rating) + '☆'.repeat(5-rev.rating);
-      const imageHtml = rev.image ? `<div><img src="${rev.image}" class="review-img-thumb" onclick="openImageModal('${rev.image}')" alt="User photo"></div>` : '';
-      html += `
-        <div class="col-md-6" data-aos="fade-up">
-          <div class="review-card-modern h-100">
-            <div class="d-flex gap-3 align-items-start">
-              <div class="avatar-initial">${rev.name.charAt(0)}</div>
-              <div class="flex-grow-1">
-                <div class="d-flex justify-content-between"><div class="star-gold">${stars}</div><small class="text-muted">${rev.date || 'Recent'}</small></div>
-                <h6 class="fw-bold mt-1">${escapeHtml(rev.name)}</h6>
-                <p class="mt-2">${escapeHtml(rev.text)}</p>
-                ${imageHtml}
-              </div>
-            </div>
-          </div>
-        </div>`;
-    });
-    container.innerHTML = html;
-  }
+      function logoutAdmin() {
+        isAdminLoggedIn = false;
+        adminPage.style.display = "none";
+        showHome();
+        showToast("🔒 Logged out from admin panel");
+        renderAllDynamic(); // re-render without delete buttons
+      }
 
-  // Gallery Rendering: show all uploaded images
-  function renderGallery() {
-    const galleryContainer = document.getElementById('photoGalleryGrid');
-    if(!galleryContainer) return;
-    const imagesWithPhotos = reviews.filter(r => r.image);
-    if(imagesWithPhotos.length === 0) {
-      galleryContainer.innerHTML = '<div class="col-12 text-center py-5"><i class="fas fa-camera-slash fa-3x mb-3"></i><p>No guest photos yet. Submit a review with a photo!</p></div>';
-      return;
-    }
-    let galleryHtml = '';
-    imagesWithPhotos.forEach(rev => {
-      galleryHtml += `
-        <div class="gallery-item" onclick="openImageModal('${rev.image}')">
-          <img src="${rev.image}" alt="Safari moment by ${escapeHtml(rev.name)}">
-          <div class="gallery-overlay">📸 ${escapeHtml(rev.name)} · ${rev.date || 'Guest'}</div>
-        </div>`;
-    });
-    galleryContainer.innerHTML = galleryHtml;
-  }
+      function checkAdminAndShowPanel() {
+        if (isAdminLoggedIn) {
+          // Already logged in -> show admin panel directly
+          showAdminPanel();
+        } else {
+          // Show login modal
+          showLoginModal();
+        }
+      }
 
-  function updateStats() {
-    const total = reviews.length;
-    const avg = total === 0 ? 0 : (reviews.reduce((a,b)=>a+b.rating,0)/total).toFixed(1);
-    document.getElementById('avgRatingHome') && (document.getElementById('avgRatingHome').innerText = avg);
-    document.getElementById('reviewCountHome') && (document.getElementById('reviewCountHome').innerText = `from ${total} traveler ${total === 1 ? 'story' : 'stories'}`);
-  }
+      function attemptLogin() {
+        const pwd = document.getElementById("adminPassword").value;
+        if (pwd === ADMIN_PASSWORD) {
+          isAdminLoggedIn = true;
+          hideLoginModal();
+          showAdminPanel();
+          showToast("✅ Welcome Admin! You can now delete reviews & photos.");
+        } else {
+          showToast("❌ Incorrect password! Access denied.");
+        }
+      }
 
-  function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
-  function showToast(msg) { const toast = document.getElementById('toastMsg'); document.getElementById('toastText').innerText = msg; toast.style.display = 'flex'; setTimeout(() => toast.style.display = 'none', 3500); }
+      function showAdminPanel() {
+        if (!isAdminLoggedIn) return;
+        homePage.style.display = "none";
+        allReviewsDiv.style.display = "none";
+        feedbackDiv.style.display = "none";
+        adminPage.style.display = "block";
+        renderAdminList();
+        document.getElementById("adminEntryCount").innerText =
+          reviews.length + " entries";
+        window.scrollTo(0, 0);
+      }
 
-  // Star selector init
-  function initStars() {
-    const stars = document.querySelectorAll('.star-select');
-    stars.forEach(star => {
-      star.addEventListener('click', function() {
-        const val = parseInt(this.getAttribute('data-val'));
-        document.getElementById('fbRating').value = val;
-        stars.forEach(s => {
-          const sVal = parseInt(s.getAttribute('data-val'));
-          if(sVal <= val) { s.className = 'fas fa-star star-select'; s.style.color = 'var(--accent-primary)'; }
-          else { s.className = 'far fa-star star-select'; s.style.color = ''; }
+      // Data & Review Management
+      let reviews = [];
+
+      function loadFromStorage() {
+        const stored = localStorage.getItem("desh_tours_photo_reviews");
+        if (stored) reviews = JSON.parse(stored);
+        else
+          reviews = [
+            {
+              id: 1,
+              name: "Michael & Sarah",
+              rating: 5,
+              text: "Incredible safari! Saw a leopard and elephant herds.",
+              date: "October 2024",
+              image:
+                "https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg?auto=compress&cs=tinysrgb&w=400",
+            },
+            {
+              id: 2,
+              name: "Amara & Nimali",
+              rating: 5,
+              text: "Perfectly organized, comfortable jeep. Over 30 elephants!",
+              date: "December 2024",
+              image:
+                "https://images.pexels.com/photos/163279/elephant-wildlife-animal-baby-163279.jpeg?auto=compress&cs=tinysrgb&w=400",
+            },
+            {
+              id: 3,
+              name: "David Chen",
+              rating: 5,
+              text: "Sunset safari was magical, saw bathing elephants.",
+              date: "January 2025",
+              image:
+                "https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg?auto=compress&cs=tinysrgb&w=400",
+            },
+            {
+              id: 4,
+              name: "Elena Rossi",
+              rating: 5,
+              text: "Best experience in Sri Lanka. Expert tracker.",
+              date: "February 2025",
+              image: null,
+            },
+          ];
+        saveData();
+        renderAllDynamic();
+      }
+      function saveData() {
+        localStorage.setItem(
+          "desh_tours_photo_reviews",
+          JSON.stringify(reviews),
+        );
+      }
+      function showToast(msg) {
+        const t = document.getElementById("toastMsg");
+        document.getElementById("toastText").innerText = msg;
+        t.style.display = "flex";
+        setTimeout(() => (t.style.display = "none"), 3000);
+      }
+      function escapeHtml(str) {
+        return (
+          str?.replace(
+            /[&<>]/g,
+            (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[m],
+          ) || ""
+        );
+      }
+      function openImageModal(src) {
+        const modal = document.getElementById("imageModal");
+        document.getElementById("modalImage").src = src;
+        modal.style.display = "flex";
+      }
+
+      function deleteReviewById(reviewId) {
+        if (!isAdminLoggedIn) {
+          showToast("⚠️ Admin login required to delete!");
+          showLoginModal();
+          return;
+        }
+        if (
+          confirm(
+            "⚠️ Permanently delete this review and its photo from gallery?",
+          )
+        ) {
+          reviews = reviews.filter((r) => r.id !== reviewId);
+          saveData();
+          renderAllDynamic();
+          if (adminPage.style.display === "block") renderAdminList();
+          showToast("✅ Review & associated photo deleted successfully.");
+        }
+      }
+
+      function renderAllDynamic() {
+        renderRecentReviews();
+        renderHorizontalGallery();
+        renderAllReviewsPage();
+        updateStats();
+      }
+
+      function renderRecentReviews() {
+        const container = document.getElementById("recentReviewsContainer");
+        if (!container) return;
+        const sorted = [...reviews].sort((a, b) => b.id - a.id).slice(0, 4);
+        if (sorted.length === 0) {
+          container.innerHTML =
+            '<div class="col-12 text-center">No reviews yet.</div>';
+          return;
+        }
+        let html = "";
+        sorted.forEach((rev) => {
+          const stars = "★".repeat(rev.rating) + "☆".repeat(5 - rev.rating);
+          const imageHtml = rev.image
+            ? `<img src="${rev.image}" class="review-img-thumb" onclick="openImageModal('${rev.image}')" alt="photo">`
+            : "";
+          const deleteBtn = isAdminLoggedIn
+            ? `<button class="admin-delete-btn" onclick="deleteReviewById(${rev.id})"><i class="fas fa-trash-can me-1"></i>Delete</button>`
+            : "";
+          html += `<div class="col-md-6"><div class="review-card-modern h-100">${deleteBtn}<div class="d-flex gap-3"><div class="avatar-initial">${rev.name.charAt(0)}</div><div><div class="star-gold">${stars}</div><h6 class="fw-bold">${escapeHtml(rev.name)}</h6><p class="mt-2 small">${escapeHtml(rev.text)}</p>${imageHtml}</div></div></div></div>`;
         });
+        container.innerHTML = html;
+      }
+
+      function renderHorizontalGallery() {
+        const galleryDiv = document.getElementById(
+          "horizontalGalleryContainer",
+        );
+        if (!galleryDiv) return;
+        const photos = reviews.filter((r) => r.image);
+        if (photos.length === 0) {
+          galleryDiv.innerHTML = '<div class="p-4">No guest photos yet.</div>';
+          return;
+        }
+        let html = "";
+        photos.forEach((rev) => {
+          const deleteIcon = isAdminLoggedIn
+            ? `<div class="delete-icon-overlay" onclick="event.stopPropagation(); deleteReviewById(${rev.id})"><i class="fas fa-trash-can"></i></div>`
+            : "";
+          html += `<div class="gallery-h-item" onclick="openImageModal('${rev.image}')">
+        ${deleteIcon}
+        <img src="${rev.image}" alt="Safari moment">
+        <div class="gallery-h-caption">📸 ${escapeHtml(rev.name)} · ${rev.date || "Guest"}</div>
+      </div>`;
+        });
+        galleryDiv.innerHTML = html;
+      }
+
+      function renderAllReviewsPage() {
+        const container = document.getElementById("allReviewsGridContainer");
+        if (!container) return;
+        const sorted = [...reviews].sort((a, b) => b.id - a.id);
+        if (sorted.length === 0) {
+          container.innerHTML = '<div class="text-center">No reviews.</div>';
+          return;
+        }
+        let html = "";
+        sorted.forEach((rev) => {
+          const stars = "★".repeat(rev.rating) + "☆".repeat(5 - rev.rating);
+          const imageHtml = rev.image
+            ? `<img src="${rev.image}" class="review-img-thumb" onclick="openImageModal('${rev.image}')" style="width:70px;height:70px;">`
+            : "";
+          const deleteBtn = isAdminLoggedIn
+            ? `<button class="admin-delete-btn" onclick="deleteReviewById(${rev.id})"><i class="fas fa-trash"></i> Delete</button>`
+            : "";
+          html += `<div class="review-card-modern">${deleteBtn}<div class="d-flex gap-3"><div class="avatar-initial">${rev.name.charAt(0)}</div><div><div>${stars}</div><h5>${escapeHtml(rev.name)}</h5><p class="small text-muted">${rev.date || "Recent"}</p><p>${escapeHtml(rev.text)}</p>${imageHtml}</div></div></div>`;
+        });
+        container.innerHTML = html;
+      }
+
+      function renderAdminList() {
+        const container = document.getElementById("adminReviewsList");
+        if (!container) return;
+        const sorted = [...reviews].sort((a, b) => b.id - a.id);
+        if (sorted.length === 0) {
+          container.innerHTML =
+            '<div class="text-center py-4">No content to manage.</div>';
+          return;
+        }
+        let html = "";
+        sorted.forEach((rev) => {
+          const stars = "★".repeat(rev.rating) + "☆".repeat(5 - rev.rating);
+          html += `<div class="review-card-modern" style="padding:1rem;"><div class="d-flex justify-content-between align-items-start"><div><strong>${escapeHtml(rev.name)}</strong> ${stars} <span class="small text-muted ms-2">${rev.date || ""}</span> ${rev.image ? '<i class="fas fa-image text-success ms-2"></i>' : '<i class="fas fa-image-slash text-muted ms-2"></i>'}</div><button class="btn-danger-outline" style="padding:4px 16px;" onclick="deleteReviewById(${rev.id})"><i class="fas fa-trash-can me-1"></i>Delete</button></div><p class="mt-2 small">${escapeHtml(rev.text.substring(0, 100))}${rev.text.length > 100 ? "..." : ""}</p>${rev.image ? `<div class="mt-2"><img src="${rev.image}" style="width:50px;height:50px;object-fit:cover;border-radius:10px;cursor:pointer;" onclick="openImageModal('${rev.image}')"></div>` : ""}<hr class="opacity-25"></div>`;
+        });
+        container.innerHTML = html;
+        document.getElementById("adminEntryCount").innerText =
+          reviews.length + " entries";
+      }
+
+      function updateStats() {
+        const total = reviews.length;
+        const avg =
+          total === 0
+            ? 0
+            : (reviews.reduce((a, b) => a + b.rating, 0) / total).toFixed(1);
+        if (document.getElementById("avgRatingHome"))
+          document.getElementById("avgRatingHome").innerText = avg;
+        if (document.getElementById("reviewCountHome"))
+          document.getElementById("reviewCountHome").innerText =
+            `from ${total} traveler ${total === 1 ? "story" : "stories"}`;
+      }
+
+      // Navigation functions
+      function showHome() {
+        homePage.style.display = "block";
+        allReviewsDiv.style.display = "none";
+        feedbackDiv.style.display = "none";
+        adminPage.style.display = "none";
+        renderAllDynamic();
+      }
+      function showAllReviews() {
+        homePage.style.display = "none";
+        allReviewsDiv.style.display = "block";
+        feedbackDiv.style.display = "none";
+        adminPage.style.display = "none";
+        renderAllReviewsPage();
+      }
+      function showFeedback() {
+        homePage.style.display = "none";
+        allReviewsDiv.style.display = "none";
+        feedbackDiv.style.display = "block";
+        adminPage.style.display = "none";
+      }
+
+      // Event Listeners
+      document
+        .getElementById("adminPanelBtn")
+        ?.addEventListener("click", (e) => {
+          e.preventDefault();
+          checkAdminAndShowPanel();
+        });
+      document
+        .getElementById("logoutAdminBtn")
+        ?.addEventListener("click", logoutAdmin);
+      document
+        .getElementById("loginSubmitBtn")
+        ?.addEventListener("click", attemptLogin);
+      document
+        .getElementById("closeLoginBtn")
+        ?.addEventListener("click", hideLoginModal);
+      document
+        .getElementById("refreshAdminBtn")
+        ?.addEventListener("click", () => {
+          if (isAdminLoggedIn) renderAdminList();
+        });
+      document
+        .getElementById("goToFeedbackBtn")
+        ?.addEventListener("click", showFeedback);
+      document
+        .getElementById("goToFeedbackBtn2")
+        ?.addEventListener("click", showFeedback);
+      document
+        .getElementById("backToHomeBtn")
+        ?.addEventListener("click", showHome);
+      document
+        .getElementById("viewAllReviewsBtn")
+        ?.addEventListener("click", showAllReviews);
+      document
+        .getElementById("viewAllReviewsBtn2")
+        ?.addEventListener("click", showAllReviews);
+      document
+        .getElementById("backToHomeFromAll")
+        ?.addEventListener("click", showHome);
+      document
+        .getElementById("backToHomeFromAllBottom")
+        ?.addEventListener("click", showHome);
+
+      // Password enter key
+      document
+        .getElementById("adminPassword")
+        ?.addEventListener("keypress", (e) => {
+          if (e.key === "Enter") attemptLogin();
+        });
+
+      // Stars + form submit
+      function initStars() {
+        const stars = document.querySelectorAll(".star-select");
+        stars.forEach((star) =>
+          star.addEventListener("click", function () {
+            const val = parseInt(this.getAttribute("data-val"));
+            document.getElementById("fbRating").value = val;
+            stars.forEach((s) => {
+              const sv = parseInt(s.getAttribute("data-val"));
+              if (sv <= val) {
+                s.className = "fas fa-star star-select";
+                s.style.color = "var(--accent-primary)";
+              } else {
+                s.className = "far fa-star star-select";
+                s.style.color = "";
+              }
+            });
+          }),
+        );
+      }
+      const fileInput = document.getElementById("fbImage"),
+        previewDiv = document.getElementById("imagePreview"),
+        previewImg = document.getElementById("previewImg");
+      fileInput?.addEventListener("change", (e) => {
+        if (e.target.files[0]) {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            previewImg.src = ev.target.result;
+            previewDiv.style.display = "block";
+          };
+          reader.readAsDataURL(e.target.files[0]);
+        } else previewDiv.style.display = "none";
       });
-    });
-  }
+      const form = document.getElementById("feedbackForm");
+      if (form)
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("fbName").value.trim(),
+            ratingVal = document.getElementById("fbRating").value,
+            reviewText = document.getElementById("fbReview").value.trim(),
+            visitDate = document.getElementById("fbDate").value,
+            consent = document.getElementById("fbConsent").checked,
+            imageFile = document.getElementById("fbImage").files[0];
+          if (
+            !name ||
+            !ratingVal ||
+            ratingVal == 0 ||
+            !reviewText ||
+            !consent
+          ) {
+            showToast("Fill all required fields");
+            return;
+          }
+          if (imageFile && !imageFile.type.startsWith("image/")) {
+            showToast("Invalid image");
+            return;
+          }
+          const addReview = (imgBase64) => {
+            const dateStr = visitDate
+              ? new Date(visitDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                })
+              : new Date().toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                });
+            const newRev = {
+              id: Date.now(),
+              name,
+              rating: parseInt(ratingVal),
+              text: reviewText,
+              date: dateStr,
+              image: imgBase64 || null,
+            };
+            reviews.unshift(newRev);
+            saveData();
+            renderAllDynamic();
+            showToast(`Thank you ${name}! Review added.`);
+            form.reset();
+            document.getElementById("fbRating").value = 0;
+            document.querySelectorAll(".star-select").forEach((s) => {
+              s.className = "far fa-star star-select";
+              s.style.color = "";
+            });
+            previewDiv.style.display = "none";
+            setTimeout(showHome, 1500);
+          };
+          if (imageFile) {
+            const reader = new FileReader();
+            reader.onload = (ev) => addReview(ev.target.result);
+            reader.readAsDataURL(imageFile);
+          } else addReview(null);
+        });
 
-  // Image Preview
-  const fileInput = document.getElementById('fbImage');
-  const previewDiv = document.getElementById('imagePreview');
-  const previewImg = document.getElementById('previewImg');
-  fileInput?.addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if(file) {
-      const reader = new FileReader();
-      reader.onload = function(ev) {
-        previewImg.src = ev.target.result;
-        previewDiv.style.display = 'block';
+      document
+        .querySelector(".close-modal")
+        ?.addEventListener(
+          "click",
+          () => (document.getElementById("imageModal").style.display = "none"),
+        );
+      window.onclick = (e) => {
+        if (e.target === document.getElementById("imageModal"))
+          document.getElementById("imageModal").style.display = "none";
       };
-      reader.readAsDataURL(file);
-    } else { previewDiv.style.display = 'none'; }
-  });
+      window.deleteReviewById = deleteReviewById;
+      window.openImageModal = openImageModal;
 
-  function addNewReview(name, rating, text, rawDate, imageBase64) {
-    let dateStr = rawDate ? new Date(rawDate).toLocaleDateString('en-US', { year:'numeric', month:'long' }) : new Date().toLocaleDateString('en-US', { year:'numeric', month:'long' });
-    const newRev = { id: Date.now(), name: name.trim(), rating: rating, text: text.trim(), date: dateStr, image: imageBase64 || null };
-    reviews.unshift(newRev);
-    saveData();
-    renderAll();
-    renderGallery();
-    updateStats();
-    showToast(`✅ Thank you ${name}! Your safari story + photo is now live.`);
-  }
+      const themeToggle = document.getElementById("themeToggle");
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("light");
+        localStorage.setItem(
+          "desh_theme",
+          document.body.classList.contains("light") ? "light" : "dark",
+        );
+      });
+      if (localStorage.getItem("desh_theme") === "light")
+        document.body.classList.add("light");
 
-  // Page switching
-  const homeDiv = document.getElementById('homePage');
-  const feedbackDiv = document.getElementById('feedbackPage');
-  function showHome() { homeDiv.style.display = 'block'; feedbackDiv.style.display = 'none'; window.scrollTo(0,0); renderAll(); renderGallery(); }
-  function showFeedback() { homeDiv.style.display = 'none'; feedbackDiv.style.display = 'block'; window.scrollTo(0,0); }
+      loadFromStorage();
+      initStars();
+    </script>
 
-  document.getElementById('goToFeedbackBtn')?.addEventListener('click', (e) => { e.preventDefault(); showFeedback(); });
-  document.getElementById('goToFeedbackBtn2')?.addEventListener('click', (e) => { e.preventDefault(); showFeedback(); });
-  document.getElementById('backToHomeBtn')?.addEventListener('click', showHome);
-
-  // Form submission with image
-  const form = document.getElementById('feedbackForm');
-  if(form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('fbName').value.trim();
-      const ratingVal = document.getElementById('fbRating').value;
-      const reviewText = document.getElementById('fbReview').value.trim();
-      const visitDate = document.getElementById('fbDate').value;
-      const consent = document.getElementById('fbConsent').checked;
-      const imageFile = document.getElementById('fbImage').files[0];
-
-      if(!name || !ratingVal || ratingVal == 0 || !reviewText || !consent) {
-        showToast('Please fill all required fields (name, rating, review, consent)');
-        return;
-      }
-
-      if(imageFile && !imageFile.type.startsWith('image/')) {
-        showToast('Please upload a valid image file (JPEG/PNG)');
-        return;
-      }
-
-      if(imageFile) {
-        const reader = new FileReader();
-        reader.onload = function(ev) {
-          addNewReview(name, parseInt(ratingVal), reviewText, visitDate, ev.target.result);
-          form.reset();
-          document.getElementById('fbRating').value = 0;
-          document.querySelectorAll('.star-select').forEach(s => { s.className = 'far fa-star star-select'; s.style.color = ''; });
-          previewDiv.style.display = 'none';
-          setTimeout(() => showHome(), 1500);
-        };
-        reader.readAsDataURL(imageFile);
-      } else {
-        addNewReview(name, parseInt(ratingVal), reviewText, visitDate, null);
-        form.reset();
-        document.getElementById('fbRating').value = 0;
-        document.querySelectorAll('.star-select').forEach(s => { s.className = 'far fa-star star-select'; s.style.color = ''; });
-        previewDiv.style.display = 'none';
-        setTimeout(() => showHome(), 1500);
-      }
-    });
-  }
-
-  // Modal logic
-  window.openImageModal = (src) => {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    modal.style.display = 'flex';
-    modalImg.src = src;
-  };
-  document.querySelector('.close-modal')?.addEventListener('click', () => { document.getElementById('imageModal').style.display = 'none'; });
-  window.onclick = function(e) { if(e.target === document.getElementById('imageModal')) document.getElementById('imageModal').style.display = 'none'; };
-
-  // Theme
-  const themeToggle = document.getElementById('themeToggle');
-  themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('light');
-    localStorage.setItem('desh_theme', document.body.classList.contains('light') ? 'light' : 'dark');
-  });
-  if(localStorage.getItem('desh_theme') === 'light') document.body.classList.add('light');
-
-  loadFromStorage();
-  initStars();
-</script>
-
-<footer class="mt-5 py-5" style="background: var(--bg-surface-elevated); border-top: 1px solid var(--border-color);">
-  <div class="container text-center">
-    <p><i class="fas fa-elephant me-2" style="color: var(--accent-primary);"></i> Desh Tours · No.20 Ekamutgugama, Udawalawa · 076 600 8609</p>
-    <small  style="color: var(--accent-primary);">© 2025 TSSUNRIX</small>
-  </div>
-</footer>
-</body>
+    <footer
+      class="mt-5 py-5"
+      style="
+        background: var(--bg-surface-elevated);
+        border-top: 1px solid var(--border-color);
+      "
+    >
+      <div class="container text-center">
+        <p>
+          <i
+            class="fas fa-elephant me-2"
+            style="color: var(--accent-primary)"
+          ></i>
+          Desh Tours · No.20 Ekamutgugama, Udawalawa · 076 600 8609
+        </p>
+        
+          : <strong>© 2025 TSSUNRIX | Secure </strong>
+          
+        
+      </div>
+    </footer>
+  </body>
 </html>
